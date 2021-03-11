@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Marca } from 'src/app/modules/marca';
+import { MarcaService } from '../marca.service';
 
 @Component({
   selector: 'app-listar-marca',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-marca.component.css']
 })
 export class ListarMarcaComponent implements OnInit {
-
-  constructor() { }
-
+  
+  marcas:any;
+  constructor(private marcaService: MarcaService) { 
+    this.marcas= [];
+  }
   ngOnInit(): void {
+    this.marcaService.obtenerMarcas().subscribe(
+      res=> {
+        this.marcas= res;
+        console.log(res); 
+      }
+    )
   }
 
 }

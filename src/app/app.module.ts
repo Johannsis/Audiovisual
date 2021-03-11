@@ -22,7 +22,7 @@ import { CrearTipoUsuarioComponent } from './component/Tipo Usuario/crear-tipo-u
 import { ListarTipoUsuarioComponent } from './component/Tipo Usuario/listar-tipo-usuario/listar-tipo-usuario.component';
 import { ListarUsuarioComponent } from './component/Usuarios/listar-usuario/listar-usuario.component';
 import { CrearUsuarioComponent } from './component/Usuarios/crear-usuario/crear-usuario.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,8 @@ import { CrearUsuarioComponent } from './component/Usuarios/crear-usuario/crear-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

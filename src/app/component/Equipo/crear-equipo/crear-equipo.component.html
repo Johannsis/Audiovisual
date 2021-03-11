@@ -18,9 +18,9 @@
               </div>
             </div>
             <div class="mb-3">
-              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="marca">
+              <select (change)="obtenerModelos($any($event.target).value)" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="marca">
                 <option value="">Elige la marca</option>
-                <option *ngFor="let item of array" [value] = "item.ID">{{item.Description}}</option>
+                <option *ngFor="let item of marcas" [value] = "item.ID" >{{item.NOMBRE}}</option>
               </select>
               <div class="text-danger" *ngIf="equipoForm.get('marca')?.hasError('required') && equipoForm.get('marca')?.touched">
                 <span>La marca <strong>es obligatoria</strong>.</span>
@@ -29,7 +29,7 @@
             <div class="mb-3">
               <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="modelo">
                 <option value="">Elige el modelo</option>
-                <option *ngFor="let item of array" [value] = "item.ID">{{item.Description}}</option>
+                <option *ngFor="let item of modelos" [value] = "item.ID" >{{item.NOMBRE}}</option>
               </select>
               <div class="text-danger" *ngIf="equipoForm.get('modelo')?.hasError('required') && equipoForm.get('modelo')?.touched">
                 <span>El modelo <strong>es obligatorio</strong>.</span>
@@ -38,7 +38,7 @@
             <div class="mb-3">
               <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="idTipoNumero">
                 <option value="">Elige el tipo de equipo</option>
-                <option *ngFor="let item of array" [value] = "item.ID">{{item.Description}}</option>
+                <option *ngFor="let item of tipoEquipos" [value] = "item.ID" >{{item.DESCRIPCION}}</option>
               </select>
               <div class="text-danger" *ngIf="equipoForm.get('idTipoNumero')?.hasError('required') && equipoForm.get('idTipoNumero')?.touched">
                 <span>El ID del tipo <strong>es obligatorio</strong>.</span>
@@ -47,7 +47,7 @@
             <div class="mb-3">
               <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="idTipoTecnologia">
                 <option value="">Elige el tipo de tecnologia</option>
-                <option *ngFor="let item of array" [value] = "item.ID">{{item.Description}}</option>
+                <option *ngFor="let item of tipoTecnologia" [value] = "item.ID" >{{item.DESCRIPCION}}</option>
               </select>
               <div class="text-danger" *ngIf="equipoForm.get('idTipoTecnologia')?.hasError('required') && equipoForm.get('idTipoTecnologia')?.touched">
                 <span>El ID de technologia <strong>es obligatorio</strong>.</span>
@@ -56,7 +56,7 @@
             <div class="mb-3">
               <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="estado">
                 <option value="">Elige el estado</option>
-                <option *ngFor="let item of array" [value] = "item.ID">{{item.Description}}</option>
+                <option *ngFor="let item of arrEstado" [value] = "item.value">{{item.estatus}}</option>
               </select>
               <div class="text-danger" *ngIf="equipoForm.get('estado')?.hasError('required') && equipoForm.get('estado')?.touched">
                 <span>El estado <strong>es obligatorio</strong>.</span>

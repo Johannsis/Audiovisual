@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Equipo } from 'src/app/modules/equipo';
+import { MarcaService } from '../../Marca/marca.service';
+import { TipoTecnologiaService } from '../../Tecnolgias Conexion/tipo-tecnologia.service';
+import { TipoEquipoService } from '../../Tipo Equipo/tipo-equipo.service';
+import { EquipoService } from '../equipo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-equipo',
@@ -29,9 +34,24 @@ export class CrearEquipoComponent implements OnInit {
     },
   ];
 
-  arrEstado = [true, false];
-
-  constructor(private fb: FormBuilder) {
+  arrEstado = [{
+    value: true,
+    estatus: "Activo"
+  },
+  {
+    value: false,
+    estatus: "Inactivo"
+  }
+  ];
+  marcas: any;
+  modelos: any;
+  tipoEquipos: any;
+  tipoTecnologia: any;
+  constructor(private fb: FormBuilder,
+    private marcaService: MarcaService,
+    private tipoTecnologiaService: TipoTecnologiaService,
+    private tipoEquipoService: TipoEquipoService,
+    private equipoService: EquipoService) {
     this.equipoForm = this.fb.group({
       descripcion: ['', Validators.required],
       numeroSerial: ['', Validators.required],
@@ -47,7 +67,60 @@ export class CrearEquipoComponent implements OnInit {
     console.log(que);
   }
 
-  ngOnInit(): void {}
+
+  obtenerMarcas() {
+    this.marcaService.obtenerMarcas().subscribe(
+      (res) => {
+        this.marcas = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
+  obtenerTiposEquipo() {
+    this.tipoEquipoService.obtenerTiposEquipo().subscribe(
+      (res) => {
+        this.tipoEquipos = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  obtenerTipoTecnologia() {
+    this.tipoTecnologiaService.obtenerTipoTecnologias().subscribe(
+      (res) => {
+        this.tipoTecnologia = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+  }
+
+  ngOnInit(): void {
+    this.obtenerMarcas();
+    this.obtenerTiposEquipo();
+    this.obtenerTipoTecnologia();
+  }
+
+  obtenerModelos(idModelo: any) {
+    this.marcaService.obtenerModelosMarca(idModelo).subscribe(
+      (res) => {
+        this.modelos = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
 
   agregarEquipo() {
     const EQUIPO: Equipo = {
@@ -60,6 +133,18 @@ export class CrearEquipoComponent implements OnInit {
       ESTADO: this.equipoForm.get('estado')?.value,
     };
 
+    this.equipoService.crearEquipo(EQUIPO).subscribe(
+      (res)=>{
+        Swal.fire(
+          'Equipo Creado',
+          'El equipo se ha creado',
+          'success'
+        );
+      },
+      (err)=>{
+        console.log(err)
+      }
+    )
     console.log(EQUIPO);
   }
 }
