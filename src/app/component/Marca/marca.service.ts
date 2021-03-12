@@ -11,17 +11,29 @@ export class MarcaService {
     constructor(
         private http: HttpClient
     ) { }
-    
-    
+
+
     obtenerMarcas() {
         return this.http.get(`${env.gestionVisualApi}/Marca/get`);
     }
 
-    obtenerModelosMarca(idMarca:number) {
+    obtenerMarca(id: number) {
+        return this.http.get(`${env.gestionVisualApi}/Marca/${id}`)
+    }
+
+    obtenerModelosMarca(idMarca: number) {
         return this.http.get(`${env.gestionVisualApi}/Marca/modelos/${idMarca}`);
     }
 
-    crearMarca(marca: Marca) : Observable<any> {
+    crearMarca(marca: Marca) {
         return this.http.post(`${env.gestionVisualApi}/Marca`, marca);
+    }
+
+    actualizarMarca(id: number, marca: Marca) {
+        return this.http.put(`${env.gestionVisualApi}/Marca/${id}`, marca);
+    }
+
+    eliminarMarca(id: number){
+        return this.http.delete(`${env.gestionVisualApi}/Marca/${id}`);
     }
 }

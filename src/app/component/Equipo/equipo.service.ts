@@ -18,5 +18,12 @@ export class EquipoService {
     crearEquipo(equipo: Equipo) {
         return this.http.post(`${env.gestionVisualApi}/Equipo`, equipo);
     }
-    
+
+    actualizarEquipo(id: number, equipo: Equipo) {
+        return this.http.put(`${env.gestionVisualApi}/Equipo/${id}`, equipo);
+    }
+
+    eliminarEquipo(id: number) { 
+        return this.http.delete(`${env.gestionVisualApi}/Equipo/${id}`);
+    }
 }
