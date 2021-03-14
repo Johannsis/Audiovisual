@@ -15,21 +15,22 @@
                 <th scope="col">Tipo Equipo</th>
                 <th scope="col">Tecnologia Conexion</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Proyector M5</td>
-                <td>0088008</td>
-                <td>Nissan</td>
-                <td>Proyect</td>
-                <td>Proyector</td>
-                <td>Bluetooth</td>
-                <td>Activo</td>
+              <tr *ngFor="let x of equipos">
+                <td>{{x.DESCRIPCION}}</td>
+                <td>{{x.NUMERO_SERIAL}}</td>
+                <td>{{x.ID_MARCA.NOMBRE}}</td>
+                <td>{{x.ID_MODELO.NOMBRE}}</td>
+                <td>{{x.ID_TIPO_EQUIPO.DESCRIPCION}}</td>
+                <td>{{x.ID_TECNOLOGIA_CONEXION.DESCRIPCION}}</td>
+                <td *ngIf="x.ESTADO">Activo</td>
+                <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
                   <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger"></i>
+                  <i class="fas fa-trash text-danger" (click)="eliminarEquipo(x.ID)"></i>
                 </td>
               </tr>
             </tbody>

@@ -4,14 +4,16 @@ import { Renta } from "./renta";
 export class Empleado {
   ID?: number
   NOMBRE: string;
+  APELLIDO: string;
   CEDULA: string;
   TANDA: string;
   FECHA_INGRESO: Date;
   ESTADO: boolean;
   RENTAS?: Renta[];
 
-  constructor(NOMBRE: string, CEDULA: string, TANDA: string, FECHA_INGRESO: Date, ESTADO: boolean, RENTAS?: Renta[]){
+  constructor(NOMBRE: string, APELLIDO:string, CEDULA: string, TANDA: string, FECHA_INGRESO: Date, ESTADO: boolean, RENTAS?: Renta[]){
     this.NOMBRE = NOMBRE;
+    this.APELLIDO = APELLIDO;
     this.CEDULA = CEDULA;
     this.TANDA = TANDA;
     this.FECHA_INGRESO = FECHA_INGRESO;

@@ -18,11 +18,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Elias El Rey</td>
-                <td>427-35887-25</td>
-                <td>Nocturna</td>
-                <td>08/12/2008</td>
+              <tr *ngFor="let x of empleados">
+                <td>{{x.NOMBRE}} {{x.APELLIDO}}</td>
+                <td>{{x.CEDULA}}</td>
+                <td>{{x.TANDA}}</td>
+                <td>{{x.FECHA_INGRESO | date: 'dd/MM/yyyy'}}</td>
                 <td>Activo</td>
                 <td>Grande</td>
                 <td>
