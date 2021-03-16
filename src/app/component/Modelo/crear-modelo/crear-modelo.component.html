@@ -3,7 +3,7 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card">
         <div class="card-body text-center">
-          <span class="titulo">Crear Marca</span>
+          <span class="titulo">Crear Modelo</span>
           <form class="mt-3" [formGroup]="modeloForm" (ngSubmit)="agregarModelo()">
             <div class="mb-3">
               <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre modelo">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="mb-3">
-              <button routerLink="/" class="btn btn-secondary btn-lg float-start">Back</button>
+              <button routerLink="/listarModelo" class="btn btn-secondary btn-lg float-start">Back</button>
               <button type="submit" [disabled]="modeloForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
             </div>
           </form>

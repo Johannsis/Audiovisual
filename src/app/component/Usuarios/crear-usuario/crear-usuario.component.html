@@ -1,1 +1,62 @@
-<p>crear-usuario works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Crear Usuario</span>
+          <form class="mt-3" [formGroup]="usuarioForm" (ngSubmit)="agregarUsuario()">
+            <div class="mb-3">
+              <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre">
+              <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+                <span>El nombre del usuario <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="apellido" class="form-control form-control-lg" placeholder="Apellido">
+              <div class="text-danger" *ngIf="usuarioForm.get('apellido')?.hasError('required') && usuarioForm.get('apellido')?.touched">
+                <span>El apellido del usuario <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="cedula" class="form-control form-control-lg" placeholder="Cedula">
+              <div class="text-danger" *ngIf="usuarioForm.get('cedula')?.hasError('required') && usuarioForm.get('cedula')?.touched">
+                <span>La cédula del usuario <strong>es obligatoria</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="matricula" class="form-control form-control-lg" placeholder="Matricula">
+              <div class="text-danger" *ngIf="usuarioForm.get('matricula')?.hasError('required') && usuarioForm.get('matricula')?.touched">
+                <span>La matricula del usuario <strong>es obligatoria</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="id_tipo_usuario" class="form-control form-control-lg" placeholder="Tipo Usuario">
+              <div class="text-danger" *ngIf="usuarioForm.get('id_tipo_usuario')?.hasError('required') && usuarioForm.get('id_tipo_usuario')?.touched">
+                <span>El tipo de usuario <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="rentas" class="form-control form-control-lg" placeholder="Rentas">
+              <div class="text-danger" *ngIf="usuarioForm.get('rentas')?.hasError('required') && usuarioForm.get('rentas')?.touched">
+                <span>La renta <strong>es obligatoria</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="estado">
+                <option value="">Elige el estado</option>
+                <option *ngFor="let item of arrEstado" [value] = "item.value">{{item.estatus}}</option>
+              </select>
+              <div class="text-danger" *ngIf="usuarioForm.get('estado')?.hasError('required') && usuarioForm.get('estado')?.touched">
+                <span>El estado <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button routerLink="/listarUsuario" class="btn btn-secondary btn-lg float-start">Back</button>
+              <button type="submit" [disabled]="usuarioForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

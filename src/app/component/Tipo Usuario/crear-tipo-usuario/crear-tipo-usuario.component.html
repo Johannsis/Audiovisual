@@ -1,1 +1,33 @@
-<p>crear-tipo-usuario works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Crear Tipo Equipo</span>
+          <form class="mt-3" [formGroup]="tipoUsuarioForm" (ngSubmit)="agregarTipoUsuario()">
+            <div class="mb-3">
+              <input type="text" formControlName="descripcion" class="form-control form-control-lg" placeholder="Descripcion">
+              <div class="text-danger" *ngIf="tipoUsuarioForm.get('descripcion')?.hasError('required') && tipoUsuarioForm.get('descripcion')?.touched">
+                <span>La descripcion <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="estado">
+                <option value="">Elige el estado</option>
+                <option *ngFor="let item of arrEstado" [value] = "item.value">{{item.estatus}}</option>
+              </select>
+              <div class="text-danger" *ngIf="tipoUsuarioForm.get('estado')?.hasError('required') && tipoUsuarioForm.get('estado')?.touched">
+                <span>El estado <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button routerLink="/listarTipoUsuario" class="btn btn-secondary btn-lg float-start">Back</button>
+              <button type="submit" [disabled]="tipoUsuarioForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
