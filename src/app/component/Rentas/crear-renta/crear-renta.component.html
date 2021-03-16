@@ -1,1 +1,69 @@
-<p>crear-renta works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Crear Renta</span>
+          <form class="mt-3" [formGroup]="rentaForm" (ngSubmit)="agregarRenta()">
+            <div class="mb-3">
+              <input type="text" formControlName="numero_prestamo" class="form-control form-control-lg" placeholder="Numero Prestamo">
+              <div class="text-danger" *ngIf="rentaForm.get('numero_prestamo')?.hasError('required') && rentaForm.get('numero_prestamo')?.touched">
+                <span>El numero de prestamo <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="id_empleado" class="form-control form-control-lg" placeholder="ID Empleado">
+              <div class="text-danger" *ngIf="rentaForm.get('id_empleado')?.hasError('required') && rentaForm.get('id_empleado')?.touched">
+                <span>El id de empleado <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="id_equipo" class="form-control form-control-lg" placeholder="ID equipo">
+              <div class="text-danger" *ngIf="rentaForm.get('id_equipo')?.hasError('required') && rentaForm.get('id_equipo')?.touched">
+                <span>El id del equipo <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="id_usuario" class="form-control form-control-lg" placeholder="ID usuario">
+              <div class="text-danger" *ngIf="rentaForm.get('id_usuario')?.hasError('required') && rentaForm.get('id_usuario')?.touched">
+                <span>El id del usuario <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="fecha_prestamo" class="form-control form-control-lg" placeholder="Fecha Prestamo">
+              <div class="text-danger" *ngIf="rentaForm.get('fecha_prestamo')?.hasError('required') && rentaForm.get('fecha_prestamo')?.touched">
+                <span>La fecha del prestamo <strong>es obligatoria</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" formControlName="fecha_devolucion" class="form-control form-control-lg" placeholder="Fecha Devolucion">
+              <div class="text-danger" *ngIf="rentaForm.get('fecha_devolucion')?.hasError('required') && rentaForm.get('fecha_devolucion')?.touched">
+                <span>La fecha de devolucion <strong>es obligatoria</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="textarea" formControlName="comentario" class="form-control form-control-lg" placeholder="Comentario">
+              <div class="text-danger" *ngIf="rentaForm.get('comentario')?.hasError('required') && rentaForm.get('comentario')?.touched">
+                <span>El comentario <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="estado">
+                <option value="">Elige el estado</option>
+                <option *ngFor="let item of arrEstado" [value] = "item.value">{{item.estatus}}</option>
+              </select>
+              <div class="text-danger" *ngIf="rentaForm.get('estado')?.hasError('required') && rentaForm.get('estado')?.touched">
+                <span>El estado <strong>es obligatorio</strong>.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button routerLink="/" class="btn btn-secondary btn-lg float-start">Back</button>
+              <button type="submit" [disabled]="rentaForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
