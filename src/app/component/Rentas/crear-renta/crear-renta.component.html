@@ -12,31 +12,40 @@
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="id_empleado" class="form-control form-control-lg" placeholder="ID Empleado">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="id_empleado">
+                <option value="">Elige el empleado</option>
+                <option *ngFor="let item of empleados" [value] = "item.ID" >{{item.NOMBRE}}</option>
+              </select>
               <div class="text-danger" *ngIf="rentaForm.get('id_empleado')?.hasError('required') && rentaForm.get('id_empleado')?.touched">
                 <span>El id de empleado <strong>es obligatorio</strong>.</span>
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="id_equipo" class="form-control form-control-lg" placeholder="ID equipo">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="id_equipo">
+                <option value="">Elige el equipo</option>
+                <option *ngFor="let item of equipos" [value] = "item.ID" >{{item.NOMBRE}}</option>
+              </select>
               <div class="text-danger" *ngIf="rentaForm.get('id_equipo')?.hasError('required') && rentaForm.get('id_equipo')?.touched">
-                <span>El id del equipo <strong>es obligatorio</strong>.</span>
+                <span>El equipo <strong>es obligatorio</strong>.</span>
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="id_usuario" class="form-control form-control-lg" placeholder="ID usuario">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="id_usuario">
+                <option value="">Elige el usuario</option>
+                <option *ngFor="let item of usuarios" [value] = "item.ID" >{{item.NOMBRE}}</option>
+              </select>
               <div class="text-danger" *ngIf="rentaForm.get('id_usuario')?.hasError('required') && rentaForm.get('id_usuario')?.touched">
-                <span>El id del usuario <strong>es obligatorio</strong>.</span>
+                <span>El usuario <strong>es obligatorio</strong>.</span>
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="fecha_prestamo" class="form-control form-control-lg" placeholder="Fecha Prestamo">
+              <input class="form-control" type="date" [value]="minDate" (change)="fechaTest1($any($event.target).value)" id="example-date-input" formControlName="fecha_prestamo">
               <div class="text-danger" *ngIf="rentaForm.get('fecha_prestamo')?.hasError('required') && rentaForm.get('fecha_prestamo')?.touched">
                 <span>La fecha del prestamo <strong>es obligatoria</strong>.</span>
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="fecha_devolucion" class="form-control form-control-lg" placeholder="Fecha Devolucion">
+              <input class="form-control" type="date" [value]="minDate" (change)="fechaTest2($any($event.target).value)" id="example-date-input" formControlName="fecha_devolucion">
               <div class="text-danger" *ngIf="rentaForm.get('fecha_devolucion')?.hasError('required') && rentaForm.get('fecha_devolucion')?.touched">
                 <span>La fecha de devolucion <strong>es obligatoria</strong>.</span>
               </div>

@@ -24,15 +24,15 @@ export class CrearMarcaComponent implements OnInit {
   ];
   constructor(private fb: FormBuilder, private marcaService: MarcaService) {
     this.marcaForm = this.fb.group({
-      nombre: ['', Validators.required],
-      estado: ['', Validators.required]
+      NOMBRE: ['', Validators.required],
+      ESTADO: ['', Validators.required]
     })
   }
 
   agregarMarca() {
     const marca: Marca = {
-      NOMBRE: this.marcaForm.get('nombre')?.value,
-      ESTADO: this.marcaForm.get('estado')?.value
+      NOMBRE: this.marcaForm.get('NOMBRE')?.value,
+      ESTADO: this.marcaForm.get('ESTADO')?.value
     };
     this.marcaService.crearMarca(marca).subscribe(
       (res) => {

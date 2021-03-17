@@ -8,11 +8,10 @@
           <table class="table table-striped mt-3">
             <thead>
               <tr>
-                <th scope="col">ID Renta</th>
                 <th scope="col">Numero Prestamo</th>
-                <th scope="col">ID Empleado</th>
-                <th scope="col">ID Equipo</th>
-                <th scope="col">ID Usuario</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Equipo</th>
+                <th scope="col">Usuario</th>
                 <th scope="col">Fecha Prestamo</th>
                 <th scope="col">Fecha Devolucion</th>
                 <th scope="col">Comentario</th>
@@ -21,19 +20,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>105520</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>11/12/12</td>
-                <td>12/12/12</td>
-                <td>Comentario</td>
-                <td>Activo</td>
+              <tr *ngFor="let x of rentas">
+                <td>{{x.NUMERO_PRESTAMO}}</td>
+                <td>{{x.ID_EMPLEADO}}</td>
+                <td>{{x.ID_EQUIPO}}</td>
+                <td>{{x.ID_USUARIO}}</td>
+                <td>{{x.FECHA_PRESTAMO}}</td>
+                <td>{{x.FECHA_DEVOLUCION}}</td>
+                <td>{{x.COMENTARIO}}</td>
+                <td *ngIf="x.ESTADO">Activo</td>
+                <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
                   <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger"></i>
+                  <i class="fas fa-trash text-danger" (click)="eliminarRenta(x.ID)"></i>
                 </td>
               </tr>
             </tbody>

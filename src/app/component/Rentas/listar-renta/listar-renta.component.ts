@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+import { RentaService } from '../renta.service';
 
 @Component({
   selector: 'app-listar-renta',
@@ -7,9 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarRentaComponent implements OnInit {
 
-  constructor() { }
+  rentas: any;
+
+  constructor(private rentaService: RentaService) { }
 
   ngOnInit(): void {
+  }
+
+  obtenerRentas(){
+    this.rentaService.obtenerRentas().subscribe(
+      (res)=>{
+        this.rentas = res;
+        console.log(res);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  eliminarRenta(id: number) {
+    Swal.fire({
+      title: 'Quiere eliminar el equipo?',
+      showDenyButton: true,
+      confirmButtonText: `Si`,
+      confirmButtonColor: 'red',
+      denyButtonText: `No`,
+      denyButtonColor: 'blue'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rentaService.eliminarRenta(id).subscribe(
+          (res)=>{
+            Swal.fire('Eliminado!', '', 'success')
+            this.obtenerRentas();
+          },
+          (err)=>{
+            console.log(err);
+          }
+        )
+      }
+    })
   }
 
 }

@@ -10,7 +10,7 @@
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
                   <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger"></i>
+                  <i class="fas fa-trash text-danger" (click)="eliminarMarca(x.ID)"></i>
                 </td>
               </tr>
             </tbody>

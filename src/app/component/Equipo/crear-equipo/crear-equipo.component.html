@@ -18,7 +18,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <select (change)="obtenerModelos($any($event.target).value)" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="marca">
+              <select (change)="obtenerModelosMarca($any($event.target).value)" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="marca">
                 <option value="">Elige la marca</option>
                 <option *ngFor="let item of marcas" [value] = "item.ID" >{{item.NOMBRE}}</option>
               </select>

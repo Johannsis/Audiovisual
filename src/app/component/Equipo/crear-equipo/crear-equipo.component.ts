@@ -14,25 +14,6 @@ import Swal from 'sweetalert2';
 })
 export class CrearEquipoComponent implements OnInit {
   equipoForm: FormGroup;
-  arr: any[] = ['baby girl', 'Illneverhurtyouagain', 'Imsorry', 'ErikIloveu'];
-  array = [
-    {
-      ID: 1,
-      Description: 'Bb',
-    },
-    {
-      ID: 2,
-      Description: 'Bb',
-    },
-    {
-      ID: 3,
-      Description: 'Bb2',
-    },
-    {
-      ID: 4,
-      Description: 'Bb3',
-    },
-  ];
 
   arrEstado = [{
     value: true,
@@ -110,7 +91,7 @@ export class CrearEquipoComponent implements OnInit {
     this.obtenerTipoTecnologia();
   }
 
-  obtenerModelos(idModelo: any) {
+  obtenerModelosMarca(idModelo: any) {
     this.marcaService.obtenerModelosMarca(idModelo).subscribe(
       (res) => {
         this.modelos = res;

@@ -27,6 +27,7 @@ export class ListarEquipoComponent implements OnInit {
       }
     )
   }
+
   eliminarEquipo(id: number) {
     Swal.fire({
       title: 'Quiere eliminar el equipo?',
@@ -34,7 +35,7 @@ export class ListarEquipoComponent implements OnInit {
       confirmButtonText: `Si`,
       confirmButtonColor: 'red',
       denyButtonText: `No`,
-      denyButtonColor: 'blue' 
+      denyButtonColor: 'blue'
     }).then((result) => {
       if (result.isConfirmed) {
         this.equipoService.eliminarEquipo(id).subscribe(

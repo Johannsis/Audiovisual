@@ -30,6 +30,10 @@ export class CrearTecnologiaConexionComponent implements OnInit {
     })
    }
 
+   test(que: any) {
+    console.log(que);
+  }
+
    agregarTipoTecnologia(){
      const tipoTecnologia: TecnologiaConexion = {
        DESCRIPCION: this.tipoTecnologiaForm.get('descripcion')?.value,
