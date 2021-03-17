@@ -13,7 +13,6 @@
                 <th scope="col">Cedula</th>
                 <th scope="col">Matricula</th>
                 <th scope="col">Tipo Usuario</th>
-                <th scope="col">Rentas</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
               </tr>
@@ -25,7 +24,6 @@
                 <td>{{x.CEDULA}}</td>
                 <td>{{x.MATRICULA}}</td>
                 <td>{{x.ID_TIPO_USUARIO}}</td>
-                <td>{{x.RENTAS}}</td>
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>

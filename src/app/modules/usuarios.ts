@@ -10,7 +10,6 @@ export class Usuarios{
   MATRICULA: string;
   ID_TIPO_USUARIO: TipoUsuarios;
   ESTADO:boolean;
-  RENTAS: Renta[];
 
   constructor(NOMBRE: string, APELLIDO: string, CEDULA:string, MATRICULA: string, ID_TIPO_USUARIO: TipoUsuarios, ESTADO:boolean, RENTAS: Renta[]){
     this.NOMBRE = NOMBRE;
@@ -19,6 +18,5 @@ export class Usuarios{
     this.MATRICULA = MATRICULA;
     this.ID_TIPO_USUARIO = ID_TIPO_USUARIO;
     this.ESTADO = ESTADO;
-    this.RENTAS = RENTAS;
   }
 }

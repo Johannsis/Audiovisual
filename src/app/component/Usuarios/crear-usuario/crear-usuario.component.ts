@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuarios } from 'src/app/modules/usuarios';
 import Swal from 'sweetalert2';
-import { RentaService } from '../../Rentas/renta.service';
 import { TipoUsuarioService } from '../../Tipo Usuario/tipo-usuario.service';
 import { UsuariosService } from '../usuarios.service';
 
@@ -26,13 +25,11 @@ export class CrearUsuarioComponent implements OnInit {
 
 
   tipoUsuario: any;
-  rentas: any;
 
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuariosService,
     private tipoUsuarioService: TipoUsuarioService,
-    private rentaService: RentaService
   ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -40,7 +37,6 @@ export class CrearUsuarioComponent implements OnInit {
       cedula: ['', Validators.required],
       matricula: ['', Validators.required],
       id_tipo_usuario: ['', Validators.required],
-      rentas: ['', Validators.required],
       estado: ['', Validators.required]
     });
   }
@@ -61,18 +57,6 @@ export class CrearUsuarioComponent implements OnInit {
     )
   }
 
-  obtenerRentas(){
-    this.rentaService.obtenerRentas().subscribe(
-      (res)=>{
-        this.rentas = res;
-        console.log(res);
-      },
-      (err)=>{
-        console.log(err);
-      }
-    )
-  }
-
   agregarUsuario() {
     const usuario: Usuarios = {
       NOMBRE: this.usuarioForm.get('nombre')?.value,
@@ -80,7 +64,6 @@ export class CrearUsuarioComponent implements OnInit {
       CEDULA: this.usuarioForm.get('cedula')?.value,
       MATRICULA: this.usuarioForm.get('matricula')?.value,
       ID_TIPO_USUARIO: this.usuarioForm.get('id_tipo_usuario')?.value,
-      RENTAS: this.usuarioForm.get('rentas')?.value,
       ESTADO: this.usuarioForm.get('ESTADO')?.value == "true",
     };
     this.usuarioService.crearUsuario(usuario).subscribe(
@@ -100,7 +83,6 @@ export class CrearUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerRentas();
     this.obtenerTipoUsuarios();
   }
 }

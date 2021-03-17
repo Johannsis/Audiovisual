@@ -111,7 +111,7 @@ export class CrearEquipoComponent implements OnInit {
       ID_MODELO: this.equipoForm.get('modelo')?.value,
       ID_TIPO_EQUIPO: this.equipoForm.get('idTipoNumero')?.value,
       ID_TECNOLOGIA_CONEXION: this.equipoForm.get('idTipoTecnologia')?.value,
-      ESTADO: this.equipoForm.get('ESTADO')?.value == "true",
+      ESTADO: this.equipoForm.get('estado')?.value == "true",
     };
 
     this.equipoService.crearEquipo(EQUIPO).subscribe(
