@@ -78,7 +78,14 @@ export class CrearEmpleadoComponent implements OnInit {
             'Empleado no creado, cedula invalida',
             'error'
           );
-        }else{
+        }else if(err.error.text=="Cédula ya registrada"){
+          Swal.fire(
+            'Error',
+            'Empleado no creado, cedula ya registrada',
+            'error'
+          );
+        }
+        else{
           console.log(err);
         }
       }

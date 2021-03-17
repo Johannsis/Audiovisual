@@ -10,22 +10,22 @@ export class UsuariosService {
     constructor(private http:HttpClient){}
 
     obtenerUsuarios() {
-        return this.http.get(`${env.gestionVisualApi}/Usuario/get`);
+        return this.http.get(`${env.gestionVisualApi}/Usuarios/get`);
     }
 
     obtenerUsuario(id: number) {
-        return this.http.get(`${env.gestionVisualApi}/Usuario/${id}`);
+        return this.http.get(`${env.gestionVisualApi}/Usuarios/${id}`);
     }
     
     crearUsuario(usuario: Usuarios) {
-        return this.http.post(`${env.gestionVisualApi}/Usuario`, usuario);
+        return this.http.post(`${env.gestionVisualApi}/Usuarios`, usuario);
     }
 
     actualizarUsuario(id: number, usuario: Usuarios) {
-        return this.http.put(`${env.gestionVisualApi}/Usuario/${id}`, usuario);
+        return this.http.put(`${env.gestionVisualApi}/Usuarios/${id}`, usuario);
     }
 
     eliminarUsuario(id: number) {
-        return this.http.delete(`${env.gestionVisualApi}/Usuario/${id}`);
+        return this.http.delete(`${env.gestionVisualApi}/Usuarios/${id}`);
     }
 }
