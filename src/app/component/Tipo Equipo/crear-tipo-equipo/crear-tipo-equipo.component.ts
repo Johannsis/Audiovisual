@@ -33,7 +33,7 @@ export class CrearTipoEquipoComponent implements OnInit {
    agregarTipoEquipo() {
      const tipoEquipo: TipoEquipo = {
        DESCRIPCION: this.tipoEquipoForm.get('descripcion')?.value,
-       ESTADO: this.tipoEquipoForm.get('estado')?.value
+       ESTADO: this.tipoEquipoForm.get('estado')?.value == "true"
      };
      this.tipoEquipoService.crearTipoEquipo(tipoEquipo).subscribe(
        (res) => {

@@ -57,7 +57,7 @@ export class CrearModeloComponent implements OnInit {
     const modelo: Modelo = {
       NOMBRE: this.modeloForm.get('NOMBRE')?.value,
       ID_MARCA: this.modeloForm.get('ID_MARCA')?.value,
-      ESTADO: this.modeloForm.get('ESTADO')?.value,
+      ESTADO: this.modeloForm.get('ESTADO')?.value == "true",
     };
     this.modeloService.crearModelo(modelo).subscribe(
       (res) => {

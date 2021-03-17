@@ -8,16 +8,16 @@
           <table class="table table-striped mt-3">
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
                 <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let x of modelos">
+                <td>{{x.ID_MARCA.NOMBRE}}</td>
                 <td>{{x.NOMBRE}}</td>
-                <td>{{x.ID_MARCA}}</td>
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>

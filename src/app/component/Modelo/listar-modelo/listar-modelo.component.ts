@@ -30,7 +30,7 @@ export class ListarModeloComponent implements OnInit {
 
   eliminarModelo(id: number){
     Swal.fire({
-      title: 'Quiere eliminar el equipo?',
+      title: 'Quiere eliminar el modelo?',
       showDenyButton: true,
       confirmButtonText: `Si`,
       confirmButtonColor: 'red',

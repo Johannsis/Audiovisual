@@ -13,7 +13,6 @@
                 <th scope="col">Tanda</th>
                 <th scope="col">Fecha de Ingreso</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Rentas</th>
                 <th scope="col">Edit</th>
               </tr>
             </thead>
@@ -23,11 +22,11 @@
                 <td>{{x.CEDULA}}</td>
                 <td>{{x.TANDA}}</td>
                 <td>{{x.FECHA_INGRESO | date: 'dd/MM/yyyy'}}</td>
-                <td>Activo</td>
-                <td>Grande</td>
+                <td *ngIf="x.ESTADO">Activo</td>
+                <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
                   <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger"></i>
+                  <i class="fas fa-trash text-danger" (click)="eliminarEmpleado(x.ID)"></i>
                 </td>
               </tr>
             </tbody>

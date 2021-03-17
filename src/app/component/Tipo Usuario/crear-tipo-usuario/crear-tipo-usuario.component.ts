@@ -33,7 +33,7 @@ export class CrearTipoUsuarioComponent implements OnInit {
    agregarTipoUsuario() {
      const tipoUsuario: TipoUsuarios = {
        DESCRIPCION: this.tipoUsuarioForm.get('descripcion')?.value,
-       ESTADO: this.tipoUsuarioForm.get('estado')?.value
+       ESTADO: this.tipoUsuarioForm.get('estado')?.value == "true"
      };
      this.tipoUsuarioService.crearTipoUsuario(tipoUsuario).subscribe(
        (res) => {

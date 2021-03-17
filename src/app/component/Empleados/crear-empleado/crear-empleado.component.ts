@@ -59,7 +59,7 @@ export class CrearEmpleadoComponent implements OnInit {
       CEDULA: this.empleadoForm.get('CEDULA')?.value,
       TANDA: this.empleadoForm.get('TANDA')?.value,
       FECHA_INGRESO: this.empleadoForm.get('FECHA_INGRESO')?.value,
-      ESTADO: this.empleadoForm.get('ESTADO')?.value
+      ESTADO: this.empleadoForm.get('ESTADO')?.value == "true"
     };
 
     this.empleadoService.crearEmpleado(empleado).subscribe(

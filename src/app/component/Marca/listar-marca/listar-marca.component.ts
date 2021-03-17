@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Marca } from 'src/app/modules/marca';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../marca.service';
 
@@ -30,7 +29,7 @@ export class ListarMarcaComponent implements OnInit {
 
   eliminarMarca(id: number) {
     Swal.fire({
-      title: 'Quiere eliminar el equipo?',
+      title: 'Quiere eliminar la marca?',
       showDenyButton: true,
       confirmButtonText: `Si`,
       confirmButtonColor: 'red',

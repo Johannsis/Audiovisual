@@ -8,22 +8,19 @@
           <table class="table table-striped mt-3">
             <thead>
               <tr>
-                <th scope="col">ID Tipo Equipo</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Tipo Equipo</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Equipo</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Retroproyector</td>
-                <td>Activo</td>
-                <td>Proyector</td>
+              <tr *ngFor="let x of tipoEquipo">
+                <td>{{x.DESCRIPCION}}</td>
+                <td *ngIf="x.ESTADO">Activo</td>
+                <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
                   <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger"></i>
+                  <i class="fas fa-trash text-danger" (click)="eliminarTipoEquipo(x.ID)"></i>
                 </td>
               </tr>
             </tbody>

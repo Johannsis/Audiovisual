@@ -23,7 +23,7 @@
             <div class="mb-3">
               <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="id_equipo">
                 <option value="">Elige el equipo</option>
-                <option *ngFor="let item of equipos" [value] = "item.ID" >{{item.NOMBRE}}</option>
+                <option *ngFor="let item of equipos" [value] = "item.ID" >{{item.DESCRIPCION}}</option>
               </select>
               <div class="text-danger" *ngIf="rentaForm.get('id_equipo')?.hasError('required') && rentaForm.get('id_equipo')?.touched">
                 <span>El equipo <strong>es obligatorio</strong>.</span>

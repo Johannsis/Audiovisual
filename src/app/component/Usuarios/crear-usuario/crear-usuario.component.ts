@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuarios } from 'src/app/modules/usuarios';
 import Swal from 'sweetalert2';
+import { RentaService } from '../../Rentas/renta.service';
+import { TipoUsuarioService } from '../../Tipo Usuario/tipo-usuario.service';
 import { UsuariosService } from '../usuarios.service';
 
 @Component({
@@ -22,9 +24,15 @@ export class CrearUsuarioComponent implements OnInit {
     },
   ];
 
+
+  tipoUsuario: any;
+  rentas: any;
+
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuariosService
+    private usuarioService: UsuariosService,
+    private tipoUsuarioService: TipoUsuarioService,
+    private rentaService: RentaService
   ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -37,6 +45,34 @@ export class CrearUsuarioComponent implements OnInit {
     });
   }
 
+  test(que: any) {
+    console.log(que);
+  }
+
+  obtenerTipoUsuarios(){
+    this.tipoUsuarioService.obtenerTiposUsuario().subscribe(
+      (res)=>{
+        this.tipoUsuario = res;
+        console.log(res);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  obtenerRentas(){
+    this.rentaService.obtenerRentas().subscribe(
+      (res)=>{
+        this.rentas = res;
+        console.log(res);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
   agregarUsuario() {
     const usuario: Usuarios = {
       NOMBRE: this.usuarioForm.get('nombre')?.value,
@@ -45,7 +81,7 @@ export class CrearUsuarioComponent implements OnInit {
       MATRICULA: this.usuarioForm.get('matricula')?.value,
       ID_TIPO_USUARIO: this.usuarioForm.get('id_tipo_usuario')?.value,
       RENTAS: this.usuarioForm.get('rentas')?.value,
-      ESTADO: this.usuarioForm.get('estado')?.value,
+      ESTADO: this.usuarioForm.get('ESTADO')?.value == "true",
     };
     this.usuarioService.crearUsuario(usuario).subscribe(
       (res) => {
@@ -63,5 +99,8 @@ export class CrearUsuarioComponent implements OnInit {
     console.log(usuario);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obtenerRentas();
+    this.obtenerTipoUsuarios();
+  }
 }

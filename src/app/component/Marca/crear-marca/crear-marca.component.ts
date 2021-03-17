@@ -32,7 +32,7 @@ export class CrearMarcaComponent implements OnInit {
   agregarMarca() {
     const marca: Marca = {
       NOMBRE: this.marcaForm.get('NOMBRE')?.value,
-      ESTADO: this.marcaForm.get('ESTADO')?.value
+      ESTADO: this.marcaForm.get('ESTADO')?.value == "true"
     };
     this.marcaService.crearMarca(marca).subscribe(
       (res) => {

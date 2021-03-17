@@ -37,7 +37,7 @@ export class CrearTecnologiaConexionComponent implements OnInit {
    agregarTipoTecnologia(){
      const tipoTecnologia: TecnologiaConexion = {
        DESCRIPCION: this.tipoTecnologiaForm.get('descripcion')?.value,
-       ESTADO: this.tipoTecnologiaForm.get('estado')?.value
+       ESTADO: this.tipoTecnologiaForm.get('estado')?.value == "true"
      };
      this.tipoTecnologiaService.crearTipoTecnologia(tipoTecnologia).subscribe(
        (res) => {

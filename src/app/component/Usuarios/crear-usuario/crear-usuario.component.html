@@ -30,15 +30,21 @@
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="id_tipo_usuario" class="form-control form-control-lg" placeholder="Tipo Usuario">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="id_tipo_usuario">
+                <option value="">Elige el tipo de usuario</option>
+                <option *ngFor="let item of tipoUsuario" [value] = "item.ID" >{{item.DESCRIPCION}}</option>
+              </select>
               <div class="text-danger" *ngIf="usuarioForm.get('id_tipo_usuario')?.hasError('required') && usuarioForm.get('id_tipo_usuario')?.touched">
                 <span>El tipo de usuario <strong>es obligatorio</strong>.</span>
               </div>
             </div>
             <div class="mb-3">
-              <input type="text" formControlName="rentas" class="form-control form-control-lg" placeholder="Rentas">
+              <select (change)="$any($event.target).value" class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="rentas">
+                <option value="">Elige la renta</option>
+                <option *ngFor="let item of rentas" [value] = "item.ID" >{{item.DESCRIPCION}}</option>
+              </select>
               <div class="text-danger" *ngIf="usuarioForm.get('rentas')?.hasError('required') && usuarioForm.get('rentas')?.touched">
-                <span>La renta <strong>es obligatoria</strong>.</span>
+                <span>El la renta <strong>es obligatoria</strong>.</span>
               </div>
             </div>
             <div class="mb-3">

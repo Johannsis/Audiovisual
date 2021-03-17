@@ -111,7 +111,7 @@ export class CrearRentaComponent implements OnInit {
       FECHA_PRESTAMO: this.rentaForm.get('fecha_prestamo')?.value,
       FECHA_DEVOLUCION: this.rentaForm.get('fecha_devolucion')?.value,
       COMENTARIO: this.rentaForm.get('comentario')?.value,
-      ESTADO: this.rentaForm.get('estado')?.value,
+      ESTADO: this.rentaForm.get('ESTADO')?.value == "true",
     };
     this.rentaService.crearRenta(renta).subscribe(
       (res) => {
