@@ -25,6 +25,7 @@ export class CrearUsuarioComponent implements OnInit {
 
 
   tipoUsuario: any;
+  usuario:any;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +58,18 @@ export class CrearUsuarioComponent implements OnInit {
     )
   }
 
+  obtenerTipoUsuario(idTipoUsuario:number){
+    this.tipoUsuarioService.obtenerTipoUsuario(idTipoUsuario).subscribe(
+      (res)=>{
+        this.usuario = res;
+        console.log(res);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
   agregarUsuario() {
     const usuario: Usuarios = {
       NOMBRE: this.usuarioForm.get('nombre')?.value,
@@ -64,7 +77,7 @@ export class CrearUsuarioComponent implements OnInit {
       CEDULA: this.usuarioForm.get('cedula')?.value,
       MATRICULA: this.usuarioForm.get('matricula')?.value,
       ID_TIPO_USUARIO: this.usuarioForm.get('id_tipo_usuario')?.value,
-      ESTADO: this.usuarioForm.get('ESTADO')?.value == "true",
+      ESTADO: this.usuarioForm.get('estado')?.value == "true"
     };
     this.usuarioService.crearUsuario(usuario).subscribe(
       (res) => {
