@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Login } from 'src/app/modules/login';
 import { LoginService } from './login.service';
 
@@ -13,8 +14,11 @@ export class LoginComponent implements OnInit {
     EMAIL:"",
     PASSWORD:"",
   };
-
-  constructor(private router: Router, private loginService: LoginService) {}
+  
+  isLoggedIn$: any;
+  constructor(private router: Router, private loginService: LoginService) {
+    
+  }
 
   isEmptyOrSpaces(text: string): boolean {
     return !text || text.trim() === '';
@@ -37,24 +41,12 @@ export class LoginComponent implements OnInit {
 
 
   empleado: any;
-
   login(): void {
     console.log(this.user);
 
-    this.loginService.login(this.user).subscribe(
-      (res) => {
-        this.empleado = res;
-        console.log(res);
-        localStorage.setItem("ID", ""+this.empleado.ID);
-        localStorage.setItem("Estatus", "true");
-
-        this.router.navigate(['/listarEquipo']);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.loginService.login(this.user);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

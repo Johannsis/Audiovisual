@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { CrearEmpleadoComponent } from './component/Empleados/crear-empleado/crear-empleado.component';
 import { ListarEmpleadoComponent } from './component/Empleados/listar-empleado/listar-empleado.component';
 import { CrearEquipoComponent } from './component/Equipo/crear-equipo/crear-equipo.component';
@@ -21,31 +22,31 @@ import { CrearUsuarioComponent } from './component/Usuarios/crear-usuario/crear-
 import { ListarUsuarioComponent } from './component/Usuarios/listar-usuario/listar-usuario.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent},
-  { path: "listarEquipo", component: ListarEquipoComponent},
-  { path: "crearEquipo", component: CrearEquipoComponent},
-  { path: "listarEmpleado", component: ListarEmpleadoComponent},
-  { path: "crearEmpleado", component: CrearEmpleadoComponent},
-  { path: "listarMarca", component: ListarMarcaComponent},
-  { path: "crearMarca", component: CrearMarcaComponent},
-  { path: "listarModelo", component: ListarModeloComponent},
-  { path: "crearModelo", component: CrearModeloComponent},
-  { path: "modificarModelo/:ID", component: CrearModeloComponent},
-  { path: "listarRenta", component: ListarRentaComponent},
-  { path: "crearRenta", component: CrearRentaComponent},
-  { path: "listarTecnologia", component: ListarTecnologiaConexionComponent},
-  { path: "crearTecnologia", component: CrearTecnologiaConexionComponent},
-  { path: "modificarTecnologia/:ID", component: CrearTecnologiaConexionComponent},
-  { path: "listarTipoEquipo", component: ListarTipoEquipoComponent},
-  { path: "crearTipoEquipo", component: CrearTipoEquipoComponent},
-  { path: "modificarTipoEquipo/:ID", component: CrearTipoEquipoComponent},
-  { path: "listarTipoUsuario", component: ListarTipoUsuarioComponent},
-  { path: "crearTipoUsuario", component: CrearTipoUsuarioComponent},
-  { path: "modificarTipoUsuario", component: CrearTipoUsuarioComponent},
-  { path: "listarUsuario", component: ListarUsuarioComponent},
-  { path: "crearUsuario", component: CrearUsuarioComponent},
-  { path: "modificarTipoUsuario", component: CrearUsuarioComponent},
-  { path: "**", redirectTo: "", pathMatch: "full"}
+  { path: "login", component: LoginComponent },
+  { path: "listarEquipo", component: ListarEquipoComponent, canActivate: [AuthGuard] },
+  { path: "crearEquipo", component: CrearEquipoComponent, canActivate: [AuthGuard] },
+  { path: "listarEmpleado", component: ListarEmpleadoComponent, canActivate: [AuthGuard] },
+  { path: "crearEmpleado", component: CrearEmpleadoComponent, canActivate: [AuthGuard] },
+  { path: "listarMarca", component: ListarMarcaComponent, canActivate: [AuthGuard] },
+  { path: "crearMarca", component: CrearMarcaComponent, canActivate: [AuthGuard] },
+  { path: "listarModelo", component: ListarModeloComponent, canActivate: [AuthGuard] },
+  { path: "crearModelo", component: CrearModeloComponent, canActivate: [AuthGuard] },
+  { path: "modificarModelo/:ID", component: CrearModeloComponent, canActivate: [AuthGuard] },
+  { path: "listarRenta", component: ListarRentaComponent, canActivate: [AuthGuard] },
+  { path: "crearRenta", component: CrearRentaComponent, canActivate: [AuthGuard] },
+  { path: "listarTecnologia", component: ListarTecnologiaConexionComponent, canActivate: [AuthGuard] },
+  { path: "crearTecnologia", component: CrearTecnologiaConexionComponent, canActivate: [AuthGuard] },
+  { path: "modificarTecnologia/:ID", component: CrearTecnologiaConexionComponent, canActivate: [AuthGuard] },
+  { path: "listarTipoEquipo", component: ListarTipoEquipoComponent, canActivate: [AuthGuard] },
+  { path: "crearTipoEquipo", component: CrearTipoEquipoComponent, canActivate: [AuthGuard] },
+  { path: "modificarTipoEquipo/:ID", component: CrearTipoEquipoComponent, canActivate: [AuthGuard] },
+  { path: "listarTipoUsuario", component: ListarTipoUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "crearTipoUsuario", component: CrearTipoUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "modificarTipoUsuario", component: CrearTipoUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "listarUsuario", component: ListarUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "crearUsuario", component: CrearUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "modificarTipoUsuario", component: CrearUsuarioComponent, canActivate: [AuthGuard] },
+  { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({
