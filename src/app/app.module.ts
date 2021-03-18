@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListarEquipoComponent } from './component/Equipo/listar-equipo/listar-equipo.component';
 import { CrearEquipoComponent } from './component/Equipo/crear-equipo/crear-equipo.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CrearEmpleadoComponent } from './component/Empleados/crear-empleado/crear-empleado.component';
 import { ListarEmpleadoComponent } from './component/Empleados/listar-empleado/listar-empleado.component';
 import { ListarMarcaComponent } from './component/Marca/listar-marca/listar-marca.component';
@@ -23,6 +23,7 @@ import { ListarTipoUsuarioComponent } from './component/Tipo Usuario/listar-tipo
 import { ListarUsuarioComponent } from './component/Usuarios/listar-usuario/listar-usuario.component';
 import { CrearUsuarioComponent } from './component/Usuarios/crear-usuario/crear-usuario.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './component/Login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +44,15 @@ import { HttpClientModule } from '@angular/common/http';
     CrearTipoUsuarioComponent,
     ListarTipoUsuarioComponent,
     ListarUsuarioComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

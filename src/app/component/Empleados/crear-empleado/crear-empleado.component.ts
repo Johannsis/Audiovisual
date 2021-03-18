@@ -33,6 +33,8 @@ export class CrearEmpleadoComponent implements OnInit {
       NOMBRE: ['', Validators.required],
       APELLIDO: ['', Validators.required],
       CEDULA: ['', Validators.required],
+      EMAIL: ['', Validators.required],
+      PASSWORD: ['', Validators.required],
       TANDA: ['', Validators.required],
       FECHA_INGRESO: ['', Validators.required],
       ESTADO: ['', Validators.required],
@@ -57,6 +59,8 @@ export class CrearEmpleadoComponent implements OnInit {
       NOMBRE: this.empleadoForm.get('NOMBRE')?.value,
       APELLIDO: this.empleadoForm.get('APELLIDO')?.value,
       CEDULA: this.empleadoForm.get('CEDULA')?.value,
+      EMAIL: this.empleadoForm.get('EMAIL')?.value,
+      PASSWORD: this.empleadoForm.get('PASSWORD')?.value,
       TANDA: this.empleadoForm.get('TANDA')?.value,
       FECHA_INGRESO: this.empleadoForm.get('FECHA_INGRESO')?.value,
       ESTADO: this.empleadoForm.get('ESTADO')?.value == "true"

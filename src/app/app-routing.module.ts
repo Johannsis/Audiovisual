@@ -4,6 +4,7 @@ import { CrearEmpleadoComponent } from './component/Empleados/crear-empleado/cre
 import { ListarEmpleadoComponent } from './component/Empleados/listar-empleado/listar-empleado.component';
 import { CrearEquipoComponent } from './component/Equipo/crear-equipo/crear-equipo.component';
 import { ListarEquipoComponent } from './component/Equipo/listar-equipo/listar-equipo.component';
+import { LoginComponent } from './component/Login/login.component';
 import { CrearMarcaComponent } from './component/Marca/crear-marca/crear-marca.component';
 import { ListarMarcaComponent } from './component/Marca/listar-marca/listar-marca.component';
 import { CrearModeloComponent } from './component/Modelo/crear-modelo/crear-modelo.component';
@@ -20,7 +21,8 @@ import { CrearUsuarioComponent } from './component/Usuarios/crear-usuario/crear-
 import { ListarUsuarioComponent } from './component/Usuarios/listar-usuario/listar-usuario.component';
 
 const routes: Routes = [
-  { path: "", component: ListarEquipoComponent},
+  { path: "", component: LoginComponent},
+  { path: "listarEquipo", component: ListarEquipoComponent},
   { path: "crearEquipo", component: CrearEquipoComponent},
   { path: "listarEmpleado", component: ListarEmpleadoComponent},
   { path: "crearEmpleado", component: CrearEmpleadoComponent},

@@ -6,15 +6,19 @@ export class Empleado {
   NOMBRE: string;
   APELLIDO: string;
   CEDULA: string;
+  EMAIL: string;
+  PASSWORD: string;
   TANDA: string;
   FECHA_INGRESO: Date;
   ESTADO: boolean;
   RENTAS?: Renta[];
 
-  constructor(NOMBRE: string, APELLIDO:string, CEDULA: string, TANDA: string, FECHA_INGRESO: Date, ESTADO: boolean, RENTAS?: Renta[]){
+  constructor(NOMBRE: string, APELLIDO:string, CEDULA: string, EMAIL: string, PASSWORD: string, TANDA: string, FECHA_INGRESO: Date, ESTADO: boolean, RENTAS?: Renta[]){
     this.NOMBRE = NOMBRE;
     this.APELLIDO = APELLIDO;
     this.CEDULA = CEDULA;
+    this.EMAIL = EMAIL;
+    this.PASSWORD = PASSWORD;
     this.TANDA = TANDA;
     this.FECHA_INGRESO = FECHA_INGRESO;
     this.ESTADO = ESTADO;

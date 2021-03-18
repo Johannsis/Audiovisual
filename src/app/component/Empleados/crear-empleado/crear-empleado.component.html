@@ -24,6 +24,18 @@
                 </div>
               </div>
               <div class="mb-3">
+                <input type="text" formControlName="EMAIL" class="form-control form-control-lg" placeholder="Correo">
+                <div class="text-danger" *ngIf="empleadoForm.get('EMAIL')?.hasError('required') && empleadoForm.get('EMAIL')?.touched">
+                  <span>El correo del empleado <strong>es obligatorio</strong>.</span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="password" formControlName="PASSWORD" class="form-control form-control-lg" placeholder="Password">
+                <div class="text-danger" *ngIf="empleadoForm.get('PASSWORD')?.hasError('required') && empleadoForm.get('PASSWORD')?.touched">
+                  <span>El apellido del empleado <strong>es obligatorio</strong>.</span>
+                </div>
+              </div>
+              <div class="mb-3">
                 <select class="form-select form-control form-control-lg" aria-valuetext="Default select example" formControlName="TANDA">
                   <option value="">Elige la tanda</option>
                   <option *ngFor="let item of tandas" [value] = "item" >{{item}}</option>
