@@ -14,6 +14,7 @@ export class ListarRentaComponent implements OnInit {
   constructor(private rentaService: RentaService) { }
 
   ngOnInit(): void {
+    this.obtenerRentas();
   }
 
   obtenerRentas(){

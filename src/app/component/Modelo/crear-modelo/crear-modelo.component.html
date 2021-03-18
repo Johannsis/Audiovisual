@@ -3,10 +3,10 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card">
         <div class="card-body text-center">
-          <span class="titulo">Crear Modelo</span>
+          <span class="titulo">{{funcion}}</span>
           <form class="mt-3" [formGroup]="modeloForm" (ngSubmit)="agregarModelo()">
             <div class="mb-3">
-              <input type="text" formControlName="NOMBRE" class="form-control form-control-lg" placeholder="Nombre modelo">
+              <input type="text" formControlName="NOMBRE" class="form-control form-control-lg" placeholder="Nombre modelo" [value]="this.modelo.NOMBRE">
               <div class="text-danger" *ngIf="modeloForm.get('NOMBRE')?.hasError('required') && modeloForm.get('NOMBRE')?.touched">
                 <span>El nombre del modelo <strong>es obligatorio</strong>.</span>
               </div>
@@ -32,7 +32,8 @@
 
             <div class="mb-3">
               <button routerLink="/listarModelo" class="btn btn-secondary btn-lg float-start">Back</button>
-              <button type="submit" [disabled]="modeloForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
+              <button type="submit" [disabled]="modeloForm.invalid" class="btn btn-success btn-lg float-end" *ngIf="funcion == 'Actualizar modelo'">Update</button>
+              <button type="submit" [disabled]="modeloForm.invalid" class="btn btn-success btn-lg float-end" *ngIf="funcion == 'Crear modelo'">Accept</button>
             </div>
           </form>
         </div>

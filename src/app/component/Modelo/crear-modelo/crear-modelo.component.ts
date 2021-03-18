@@ -4,6 +4,7 @@ import { Modelo } from 'src/app/modules/modelo';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../../Marca/marca.service';
 import { ModeloService } from '../modelo.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-crear-modelo',
@@ -26,6 +27,7 @@ export class CrearModeloComponent implements OnInit {
   marcas: any;
 
   constructor(
+    private activeRoute: ActivatedRoute,
     private fb: FormBuilder,
     private modeloService: ModeloService,
     private marcaService: MarcaService
@@ -59,19 +61,68 @@ export class CrearModeloComponent implements OnInit {
       ID_MARCA: this.modeloForm.get('ID_MARCA')?.value,
       ESTADO: this.modeloForm.get('ESTADO')?.value == "true",
     };
-    this.modeloService.crearModelo(modelo).subscribe(
-      (res) => {
-        Swal.fire('Exito', 'Modelo creado', 'success');
-        console.log(res);
+    if(this.funcion == "Crear modelo"){
+      this.modeloService.crearModelo(modelo).subscribe(
+        (res) => {
+          Swal.fire('Exito', 'Modelo creado', 'success');
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+      console.log(modelo);
+    }else{
+      this.modificarModelo(this.modelo.ID, modelo);
+    }
+  }
+
+  funcion: any;
+  modelo:any;
+
+  obtenerModelo(ID: number){
+    this.modeloService.obtenerModelo(ID).subscribe(
+      (res)=>{
+        this.modelo = res;
       },
-      (err) => {
+      (err)=>{
         console.log(err);
       }
-    );
-    console.log(modelo);
+    )
+    console.log(this.modelo);
+  }
+
+  modificarModelo(ID:number, Model: Modelo){
+    this.modeloService.actualizarModelo(ID, Model).subscribe(
+      (res)=>{
+        Swal.fire(
+          'Modelo Actualizado',
+          '',
+          'success'
+        );
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
   }
 
   ngOnInit(): void {
+    this.activeRoute.params.subscribe(
+      (res)=>{
+        if(res.ID){
+          this.funcion = "Actualizar modelo";
+          this.obtenerModelo(res.ID);
+        }else{
+          this.funcion = "Crear modelo"
+        }
+        console.log(this.funcion);
+        console.log(res);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
     this.obtenerMarcas();
   }
 }

@@ -23,7 +23,7 @@
                 <td>{{x.APELLIDO}}</td>
                 <td>{{x.CEDULA}}</td>
                 <td>{{x.MATRICULA}}</td>
-                <td>{{x.ID_TIPO_USUARIO}}</td>
+                <td>{{x.ID_TIPO_USUARIO.DESCRIPCION}}</td>
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>

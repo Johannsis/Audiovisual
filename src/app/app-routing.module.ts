@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: "crearMarca", component: CrearMarcaComponent},
   { path: "listarModelo", component: ListarModeloComponent},
   { path: "crearModelo", component: CrearModeloComponent},
+  { path: "modificarModelo/:ID", component: CrearModeloComponent},
   { path: "listarRenta", component: ListarRentaComponent},
   { path: "crearRenta", component: CrearRentaComponent},
   { path: "listarTecnologia", component: ListarTecnologiaConexionComponent},

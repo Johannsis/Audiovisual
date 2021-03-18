@@ -90,6 +90,22 @@ export class CrearUsuarioComponent implements OnInit {
       },
       (err) => {
         console.log(err)
+        if(err.error.text =="Ingrese una cédula válida"){
+          Swal.fire(
+            'Error',
+            'Usuario no creado, cedula invalida',
+            'error'
+          );
+        }else if(err.error.text=="Cédula ya registrada"){
+          Swal.fire(
+            'Error',
+            'Usuario no creado, cedula ya registrada',
+            'error'
+          );
+        }
+        else{
+          console.log(err);
+        }
       }
     );
     console.log(usuario);

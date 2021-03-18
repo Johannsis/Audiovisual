@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-lg-12">
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">Listado de Rentas</span>
@@ -9,9 +9,9 @@
             <thead>
               <tr>
                 <th scope="col">Numero Prestamo</th>
-                <th scope="col">Empleado</th>
-                <th scope="col">Equipo</th>
-                <th scope="col">Usuario</th>
+                <th scope="col">Cedula Empleado</th>
+                <th scope="col">Nombre Equipo</th>
+                <th scope="col">Matricula Usuario</th>
                 <th scope="col">Fecha Prestamo</th>
                 <th scope="col">Fecha Devolucion</th>
                 <th scope="col">Comentario</th>
@@ -22,11 +22,11 @@
             <tbody>
               <tr *ngFor="let x of rentas">
                 <td>{{x.NUMERO_PRESTAMO}}</td>
-                <td>{{x.ID_EMPLEADO}}</td>
-                <td>{{x.ID_EQUIPO}}</td>
-                <td>{{x.ID_USUARIO}}</td>
-                <td>{{x.FECHA_PRESTAMO}}</td>
-                <td>{{x.FECHA_DEVOLUCION}}</td>
+                <td>{{x.ID_EMPLEADO.CEDULA}}</td>
+                <td>{{x.ID_EQUIPO.DESCRIPCION}}</td>
+                <td>{{x.ID_USUARIO.MATRICULA}}</td>
+                <td>{{x.FECHA_PRESTAMO | date: 'dd/MM/yyyy'}}</td>
+                <td>{{x.FECHA_DEVOLUCION | date: 'dd/MM/yyyy'}}</td>
                 <td>{{x.COMENTARIO}}</td>
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>

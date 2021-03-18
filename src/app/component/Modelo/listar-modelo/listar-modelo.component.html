@@ -21,7 +21,7 @@
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
-                  <i class="fas fa-edit text-primary"></i>
+                  <i class="fas fa-edit text-primary" [routerLink]="['/modificarModelo', x.ID]"></i>
                   <i class="fas fa-trash text-danger" (click)="eliminarModelo(x.ID)"></i>
                 </td>
               </tr>
