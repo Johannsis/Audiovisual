@@ -33,12 +33,16 @@ const routes: Routes = [
   { path: "crearRenta", component: CrearRentaComponent},
   { path: "listarTecnologia", component: ListarTecnologiaConexionComponent},
   { path: "crearTecnologia", component: CrearTecnologiaConexionComponent},
+  { path: "modificarTecnologia/:ID", component: CrearTecnologiaConexionComponent},
   { path: "listarTipoEquipo", component: ListarTipoEquipoComponent},
   { path: "crearTipoEquipo", component: CrearTipoEquipoComponent},
+  { path: "modificarTipoEquipo/:ID", component: CrearTipoEquipoComponent},
   { path: "listarTipoUsuario", component: ListarTipoUsuarioComponent},
   { path: "crearTipoUsuario", component: CrearTipoUsuarioComponent},
+  { path: "modificarTipoUsuario", component: CrearTipoUsuarioComponent},
   { path: "listarUsuario", component: ListarUsuarioComponent},
   { path: "crearUsuario", component: CrearUsuarioComponent},
+  { path: "modificarTipoUsuario", component: CrearUsuarioComponent},
   { path: "**", redirectTo: "", pathMatch: "full"}
 ];
 

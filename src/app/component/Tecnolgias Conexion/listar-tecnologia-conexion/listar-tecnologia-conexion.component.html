@@ -19,7 +19,7 @@
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>
                 <td>
-                  <i class="fas fa-edit text-primary"></i>
+                  <i class="fas fa-edit text-primary" [routerLink]="['/modificarTecnologia', x.ID]"></i>
                   <i class="fas fa-trash text-danger" (click)="eliminarTipoTecnologia(x.ID)"></i>
                 </td>
               </tr>
