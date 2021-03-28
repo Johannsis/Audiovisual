@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RentaService } from '../renta.service';
-
+import 'jspdf-autotable';
+declare var jsPDF: any;
 @Component({
   selector: 'app-listar-renta',
   templateUrl: './listar-renta.component.html',
@@ -17,13 +18,13 @@ export class ListarRentaComponent implements OnInit {
     this.obtenerRentas();
   }
 
-  obtenerRentas(){
+  obtenerRentas() {
     this.rentaService.obtenerRentas().subscribe(
-      (res)=>{
+      (res) => {
         this.rentas = res;
         console.log(res);
       },
-      (err)=>{
+      (err) => {
         console.log(err);
       }
     )
@@ -40,16 +41,32 @@ export class ListarRentaComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.rentaService.eliminarRenta(id).subscribe(
-          (res)=>{
+          (res) => {
             Swal.fire('Eliminado!', '', 'success')
             this.obtenerRentas();
           },
-          (err)=>{
+          (err) => {
             console.log(err);
           }
         )
       }
     })
+  }
+
+  @ViewChild('reportes') reportes: ElementRef;
+  generarReportes() {
+    const data = this.reportes.nativeElement;
+    var edit = document.getElementById('edit');
+    edit.parentNode.removeChild(edit)
+    console.log(data.innerHTML);
+
+    const doc = new jsPDF('p', 'pt', 'a4');
+
+    doc.autoTable({
+      theme: 'striped',
+      html: data
+    });
+    doc.save('Reportes de renta.pdf');    
   }
 
 }

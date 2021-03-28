@@ -5,7 +5,8 @@
         <div class="card-body text-center">
           <span class="titulo">Listado de Rentas</span>
           <button class="btn btn-success float-end" routerLink="/crearRenta">Nuevo</button>
-          <table class="table table-striped mt-3">
+          <button class="btn btn-success float-end" (click)="generarReportes()">Exportar</button>
+          <table class="table table-striped mt-3" id="tablaReporte" #reportes>
             <thead>
               <tr>
                 <th scope="col">Numero Prestamo</th>
@@ -16,7 +17,7 @@
                 <th scope="col">Fecha Devolucion</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Edit</th>
+                <th id="edit" scope="col">Edit</th>
               </tr>
             </thead>
             <tbody>

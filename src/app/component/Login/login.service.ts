@@ -25,7 +25,7 @@ export class LoginService {
       this.router.navigate(['/listarEquipo'])
       return logged;
     }
-    return;
+    return false;
   }
   
   logout() {                            // {4}
