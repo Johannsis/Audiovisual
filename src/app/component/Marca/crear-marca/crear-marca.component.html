@@ -3,7 +3,7 @@
       <div class="col-lg-6 offset-lg-3">
         <div class="card">
           <div class="card-body text-center">
-            <span class="titulo">Crear Marca</span>
+            <span class="titulo">{{funcion}}</span>
             <form class="mt-3" [formGroup]="marcaForm" (ngSubmit)="agregarMarca()">
               <div class="mb-3">
                 <input type="text" formControlName="NOMBRE" class="form-control form-control-lg" placeholder="Nombre marca">
@@ -23,7 +23,8 @@
 
               <div class="mb-3">
                 <button routerLink="/listarMarca" class="btn btn-secondary btn-lg float-start">Back</button>
-                <button type="submit" [disabled]="marcaForm.invalid" class="btn btn-success btn-lg float-end">Accept</button>
+                <button type="submit" [disabled]="marcaForm.invalid" class="btn btn-success btn-lg float-end" *ngIf="funcion == 'Actualizar marca'">Update</button>
+                <button type="submit" [disabled]="marcaForm.invalid" class="btn btn-success btn-lg float-end" *ngIf="funcion =='Crear marca'">Accept</button>
               </div>
             </form>
           </div>

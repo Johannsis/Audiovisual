@@ -24,7 +24,7 @@ export class CrearModeloComponent implements OnInit {
     },
   ];
 
-  marcas: any;
+  marcas: any[] = [];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -43,10 +43,15 @@ export class CrearModeloComponent implements OnInit {
     console.log(que);
   }
 
+
   obtenerMarcas() {
     this.marcaService.obtenerMarcas().subscribe(
-      (res) => {
-        this.marcas = res;
+      (res: any) => {
+        res.forEach((element:any) => {
+          if(element.ESTADO){
+            this.marcas.push(element);
+          }
+        });
         console.log(res);
       },
       (err) => {
@@ -84,12 +89,12 @@ export class CrearModeloComponent implements OnInit {
     this.modeloService.obtenerModelo(ID).subscribe(
       (res)=>{
         this.modelo = res;
+        console.log(this.modelo);
       },
       (err)=>{
         console.log(err);
       }
     )
-    console.log(this.modelo);
   }
 
   modificarModelo(ID:number, Model: Modelo){
@@ -113,6 +118,7 @@ export class CrearModeloComponent implements OnInit {
         if(res.ID){
           this.funcion = "Actualizar modelo";
           this.obtenerModelo(res.ID);
+          console.log(this.modelo);
         }else{
           this.funcion = "Crear modelo"
         }
