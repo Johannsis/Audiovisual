@@ -27,9 +27,9 @@ export class CrearRentaComponent implements OnInit {
 
   minDate = new Date().toISOString();
 
-  empleados: any;
-  equipos: any;
-  usuarios: any;
+  empleados: any[] = [];
+  equipos: any[] = [];
+  usuarios: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -68,9 +68,12 @@ export class CrearRentaComponent implements OnInit {
 
   obtenerEmpleados(){
     this.empleadoService.obtenerEmpleados().subscribe(
-      (res) => {
-        this.empleados = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.empleados.push(element);
+          }
+        });
       },
       (err) =>{
         console.log(err);
@@ -80,9 +83,12 @@ export class CrearRentaComponent implements OnInit {
 
   obtenerEquipos(){
     this.equipoService.obtenerEquipos().subscribe(
-      (res) => {
-        this.equipos = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.equipos.push(element);
+          }
+        });
       },
       (err) =>{
         console.log(err);
@@ -92,9 +98,12 @@ export class CrearRentaComponent implements OnInit {
 
   obtenerUsuarios(){
     this.usuarioService.obtenerUsuarios().subscribe(
-      (res)=>{
-        this.usuarios = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.usuarios.push(element);
+          }
+        });
       },
       (err)=>{
         console.log(err);

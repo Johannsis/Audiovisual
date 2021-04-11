@@ -24,7 +24,7 @@ export class CrearUsuarioComponent implements OnInit {
   ];
 
 
-  tipoUsuario: any;
+  tipoUsuario: any[]=[];
   usuario:any;
 
   constructor(
@@ -48,9 +48,12 @@ export class CrearUsuarioComponent implements OnInit {
 
   obtenerTipoUsuarios(){
     this.tipoUsuarioService.obtenerTiposUsuario().subscribe(
-      (res)=>{
-        this.tipoUsuario = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.tipoUsuario.push(element);
+          }
+        });
       },
       (err)=>{
         console.log(err);

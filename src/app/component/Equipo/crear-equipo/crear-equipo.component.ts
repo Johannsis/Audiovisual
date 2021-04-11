@@ -24,10 +24,11 @@ export class CrearEquipoComponent implements OnInit {
     estatus: "Inactivo"
   }
   ];
-  marcas: any;
-  modelos: any;
-  tipoEquipos: any;
-  tipoTecnologia: any;
+  marcas: any[] = [];
+  modelos: any[] = [];
+  tipoEquipos: any[] = [];
+  tipoTecnologia: any[] = [];
+
   constructor(private fb: FormBuilder,
     private marcaService: MarcaService,
     private tipoTecnologiaService: TipoTecnologiaService,
@@ -51,9 +52,12 @@ export class CrearEquipoComponent implements OnInit {
 
   obtenerMarcas() {
     this.marcaService.obtenerMarcas().subscribe(
-      (res) => {
-        this.marcas = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.marcas.push(element);
+          }
+        });
       },
       (err) => {
         console.log(err);
@@ -63,9 +67,12 @@ export class CrearEquipoComponent implements OnInit {
 
   obtenerTiposEquipo() {
     this.tipoEquipoService.obtenerTiposEquipo().subscribe(
-      (res) => {
-        this.tipoEquipos = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.tipoEquipos.push(element);
+          }
+        });
       },
       (err) => {
         console.log(err);
@@ -75,9 +82,12 @@ export class CrearEquipoComponent implements OnInit {
 
   obtenerTipoTecnologia() {
     this.tipoTecnologiaService.obtenerTipoTecnologias().subscribe(
-      (res) => {
-        this.tipoTecnologia = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.tipoTecnologia.push(element);
+          }
+        });
       },
       (err) => {
         console.log(err)
@@ -93,9 +103,12 @@ export class CrearEquipoComponent implements OnInit {
 
   obtenerModelosMarca(idModelo: any) {
     this.marcaService.obtenerModelosMarca(idModelo).subscribe(
-      (res) => {
-        this.modelos = res;
-        console.log(res);
+      (res: any) => {
+        res.forEach(element => {
+          if(element.ESTADO){
+            this.modelos.push(element);
+          }
+        });
       },
       (err) => {
         console.log(err);
