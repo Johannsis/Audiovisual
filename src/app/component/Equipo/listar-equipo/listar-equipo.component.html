@@ -4,37 +4,69 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">Listado de Equipos</span>
-          <button class="btn btn-success float-end" routerLink="/crearEquipo">Nuevo</button>
-          <table class="table table-striped mt-3">
-            <thead>
-              <tr>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Numero Serial</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Tipo Equipo</th>
-                <th scope="col">Tecnologia Conexion</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let x of equipos">
-                <td>{{x.DESCRIPCION}}</td>
-                <td>{{x.NUMERO_SERIAL}}</td>
-                <td>{{x.ID_MARCA.NOMBRE}}</td>
-                <td>{{x.ID_MODELO.NOMBRE}}</td>
-                <td>{{x.ID_TIPO_EQUIPO.DESCRIPCION}}</td>
-                <td>{{x.ID_TECNOLOGIA_CONEXION.DESCRIPCION}}</td>
-                <td *ngIf="x.ESTADO">Activo</td>
-                <td *ngIf="!x.ESTADO">Inactivo</td>
-                <td>
-                  <i class="fas fa-edit text-primary"></i>
-                  <i class="fas fa-trash text-danger" (click)="eliminarEquipo(x.ID)"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <button class="btn btn-success float-end" routerLink="/crearEquipo">
+            Nuevo
+          </button>
+          <div class="container-fluid">
+            <div class="row">
+              <select
+                class="form-select w-50 mt-3"
+                aria-valuetext="Default select example" [(ngModel)]="categorySelected"
+                (change)="changeState()"
+              >
+                <option selected [ngValue]="null">Seleccionar Categoria</option>
+                <option *ngFor="let category of categories" [ngValue]="category.value">{{category.name}}</option>
+              </select>
+              <div class="input-group mt-3">
+                <div class="form-outline">
+                  <input
+                    type="search"
+                    [disabled] = "disableSearch"
+                    (keyup)="search($any($event.target).value)"
+                    id="form1"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <button type="button" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Numero Serial</th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Tipo Equipo</th>
+                  <th scope="col">Tecnologia Conexion</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of filterData">
+                  <td>{{ x.DESCRIPCION }}</td>
+                  <td>{{ x.NUMERO_SERIAL }}</td>
+                  <td>{{ x.ID_MARCA.NOMBRE }}</td>
+                  <td>{{ x.ID_MODELO.NOMBRE }}</td>
+                  <td>{{ x.ID_TIPO_EQUIPO.DESCRIPCION }}</td>
+                  <td>{{ x.ID_TECNOLOGIA_CONEXION.DESCRIPCION }}</td>
+                  <td *ngIf="x.ESTADO">Activo</td>
+                  <td *ngIf="!x.ESTADO">Inactivo</td>
+                  <td>
+                    <i class="fas fa-edit text-primary"></i>
+                    <i
+                      class="fas fa-trash text-danger"
+                      (click)="eliminarEquipo(x.ID)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
