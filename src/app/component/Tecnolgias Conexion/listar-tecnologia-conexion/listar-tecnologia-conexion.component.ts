@@ -17,10 +17,63 @@ export class ListarTecnologiaConexionComponent implements OnInit {
     this.obtenerTipoTecnologia();
   }
 
+  filterData: any[] = [];
+
+  categories: any[] = [
+    { value: 'DESCRIPCION', name: 'Descripcion' },
+    { value: 'ESTADO ACTIVO', name: 'Activo' },
+    { value: 'ESTADO INACTIVO', name: 'Inactivo' },
+  ];
+  categorySelected: any = null;
+  disableSearch: boolean = false;
+
+  changeState(): void {
+    if (this.categorySelected == 'ESTADO ACTIVO') {
+      this.filterData = this.tipoTecnologia.filter((element) => element.ESTADO);
+      this.disableSearch = true;
+    } else if (this.categorySelected == 'ESTADO INACTIVO') {
+      this.filterData = this.tipoTecnologia.filter((element) => !element.ESTADO);
+      this.disableSearch = true;
+    } else {
+      this.filterData = this.tipoTecnologia;
+      this.disableSearch = false;
+    }
+  }
+
+  search(term: string) {
+    if (!term) {
+      this.filterData = this.tipoTecnologia;
+    } else {
+      switch (this.categorySelected) {
+        case 'DESCRIPCION':
+          this.filterData = this.tipoTecnologia.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+        case 'ESTADO ACTIVO':
+          this.filterData = this.tipoTecnologia.filter((element) => element.ESTADO);
+          break;
+        case 'ESTADO INACTIVO':
+          this.filterData = this.tipoTecnologia.filter((element) => !element.ESTADO);
+          break;
+        default:
+          this.filterData = this.tipoTecnologia.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+      }
+    }
+  }
+
   obtenerTipoTecnologia(){
     this.tipoTecnologiaService.obtenerTipoTecnologias().subscribe(
       (res) =>{
         this.tipoTecnologia = res;
+        this.filterData = this.tipoTecnologia;
         console.log(res);
       },
       (err) => {

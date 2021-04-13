@@ -17,10 +17,63 @@ export class ListarTipoEquipoComponent implements OnInit {
     this.obtenerTipoEquipo();
   }
 
+  filterData: any[] = [];
+
+  categories: any[] = [
+    { value: 'DESCRIPCION', name: 'Tipo Equipo' },
+    { value: 'ESTADO ACTIVO', name: 'Activo' },
+    { value: 'ESTADO INACTIVO', name: 'Inactivo' },
+  ];
+  categorySelected: any = null;
+  disableSearch: boolean = false;
+
+  changeState(): void {
+    if (this.categorySelected == 'ESTADO ACTIVO') {
+      this.filterData = this.tipoEquipo.filter((element) => element.ESTADO);
+      this.disableSearch = true;
+    } else if (this.categorySelected == 'ESTADO INACTIVO') {
+      this.filterData = this.tipoEquipo.filter((element) => !element.ESTADO);
+      this.disableSearch = true;
+    } else {
+      this.filterData = this.tipoEquipo;
+      this.disableSearch = false;
+    }
+  }
+
+  search(term: string) {
+    if (!term) {
+      this.filterData = this.tipoEquipo;
+    } else {
+      switch (this.categorySelected) {
+        case 'DESCRIPCION':
+          this.filterData = this.tipoEquipo.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+        case 'ESTADO ACTIVO':
+          this.filterData = this.tipoEquipo.filter((element) => element.ESTADO);
+          break;
+        case 'ESTADO INACTIVO':
+          this.filterData = this.tipoEquipo.filter((element) => !element.ESTADO);
+          break;
+        default:
+          this.filterData = this.tipoEquipo.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+      }
+    }
+  }
+
   obtenerTipoEquipo(){
     this.tipoEquipoService.obtenerTiposEquipo().subscribe(
       (res)=>{
         this.tipoEquipo = res;
+        this.filterData = this.tipoEquipo;
         console.log(res);
       },
       (err)=>{

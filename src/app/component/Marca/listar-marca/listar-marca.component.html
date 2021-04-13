@@ -5,6 +5,32 @@
         <div class="card-body text-center">
           <span class="titulo">Listado de Marcas</span>
           <button class="btn btn-success float-end" routerLink="/crearMarca">Nuevo</button>
+          <div class="container-fluid">
+            <div class="row">
+              <select
+                class="form-select w-50 mt-3"
+                aria-valuetext="Default select example" [(ngModel)]="categorySelected"
+                (change)="changeState()"
+              >
+                <option selected [ngValue]="null">Seleccionar Categoria</option>
+                <option *ngFor="let category of categories" [ngValue]="category.value">{{category.name}}</option>
+              </select>
+              <div class="input-group mt-3">
+                <div class="form-outline">
+                  <input
+                    type="search"
+                    [disabled] = "disableSearch"
+                    (keyup)="search($any($event.target).value)"
+                    id="form1"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <button type="button" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
           <table class="table table-striped mt-3">
             <thead>
               <tr>
@@ -14,7 +40,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let x of marcas">
+              <tr *ngFor="let x of filterData">
                 <td>{{x.NOMBRE}}</td>
                 <td *ngIf="x.ESTADO">Activo</td>
                 <td *ngIf="!x.ESTADO">Inactivo</td>

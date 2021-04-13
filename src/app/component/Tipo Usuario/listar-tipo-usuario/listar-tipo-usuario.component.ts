@@ -17,10 +17,64 @@ export class ListarTipoUsuarioComponent implements OnInit {
     this.obtenerUsuarios();
   }
 
+  filterData: any[] = [];
+  estado: any;
+
+  categories: any[] = [
+    { value: 'DESCRIPCION', name: 'Descripcion' },
+    { value: 'ESTADO ACTIVO', name: 'Activo' },
+    { value: 'ESTADO INACTIVO', name: 'Inactivo' },
+  ];
+  categorySelected: any = null;
+  disableSearch: boolean = false;
+
+  changeState(): void {
+    if (this.categorySelected == 'ESTADO ACTIVO') {
+      this.filterData = this.tipoUsuario.filter((element) => element.ESTADO);
+      this.disableSearch = true;
+    } else if (this.categorySelected == 'ESTADO INACTIVO') {
+      this.filterData = this.tipoUsuario.filter((element) => !element.ESTADO);
+      this.disableSearch = true;
+    } else {
+      this.filterData = this.tipoUsuario;
+      this.disableSearch = false;
+    }
+  }
+
+  search(term: string) {
+    if (!term) {
+      this.filterData = this.tipoUsuario;
+    } else {
+      switch (this.categorySelected) {
+        case 'DESCRIPCION':
+          this.filterData = this.tipoUsuario.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+        case 'ESTADO ACTIVO':
+          this.filterData = this.tipoUsuario.filter((element) => element.ESTADO);
+          break;
+        case 'ESTADO INACTIVO':
+          this.filterData = this.tipoUsuario.filter((element) => !element.ESTADO);
+          break;
+        default:
+          this.filterData = this.tipoUsuario.filter((element) =>
+            element.DESCRIPCION.trim()
+              .toLowerCase()
+              .includes(term.trim().toLowerCase())
+          );
+          break;
+      }
+    }
+  }
+
   obtenerUsuarios(){
     this.tipoUsuarioService.obtenerTiposUsuario().subscribe(
       (res) =>{
         this.tipoUsuario = res;
+        this.filterData = this.tipoUsuario;
         console.log(res);
       },
       (err)=>{

@@ -6,6 +6,38 @@
           <span class="titulo">Listado de Rentas</span>
           <button class="btn btn-success float-end" routerLink="/crearRenta">Nuevo</button>
           <button class="btn btn-success float-end" (click)="generarReportes()">Exportar</button>
+          <div class="container-fluid">
+            <div class="row">
+              <select
+                class="form-select w-50 mt-3"
+                aria-valuetext="Default select example" [(ngModel)]="categorySelected"
+                (change)="changeState()"
+              >
+                <option selected [ngValue]="null">Seleccionar Categoria</option>
+                <option *ngFor="let category of categories" [ngValue]="category.value">{{category.name}}</option>
+              </select>
+              <div class="input-group mt-3">
+                <div class="form-outline">
+                  <input
+                    type="search"
+                    [disabled] = "disableSearch"
+                    (keyup)="search($any($event.target).value)"
+                    id="form1"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <button type="button" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <div class="mt-3 float-left" *ngIf="categorySelected == 'FECHA_PRESTAMO'">
+                <input type="date" [(ngModel)]="dateSelected" (change)="changeState()">
+              </div>
+              <div class="mt-3 float-left" *ngIf="categorySelected == 'FECHA_DEVOLUCION'">
+                <input type="date" [(ngModel)]="dateSelected" (change)="changeState()">
+              </div>
+            </div>
           <table class="table table-striped mt-3" id="tablaReporte" #reportes>
             <thead>
               <tr>
@@ -21,7 +53,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let x of rentas">
+              <tr *ngFor="let x of filterData">
                 <td>{{x.NUMERO_PRESTAMO}}</td>
                 <td>{{x.ID_EMPLEADO.CEDULA}}</td>
                 <td>{{x.ID_EQUIPO.DESCRIPCION}}</td>
