@@ -41,7 +41,8 @@ export class ListarEmpleadoComponent implements OnInit {
   ];
   categorySelected: any = null;
   disableSearch: boolean = false;
-  dateSelected: any = new Date().toISOString();
+  initialDate: any = new Date().toISOString();
+  finalDate: any = new Date().toISOString();
 
   parseIsoDatetime(dtstr) {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);
@@ -65,10 +66,8 @@ export class ListarEmpleadoComponent implements OnInit {
       this.disableSearch = true;
     } else if (this.categorySelected == 'FECHA_INGRESO') {
       this.filterData = this.empleados.filter((element) => {
-        return (
-          this.parseIsoDatetime(element.FECHA_INGRESO) >
-          this.parseIsoDatetime(this.dateSelected)
-        );
+        return (this.parseIsoDatetime(element.FECHA_INGRESO) >= this.parseIsoDatetime(this.initialDate) &&
+                this.parseIsoDatetime(element.FECHA_INGRESO) <= this.parseIsoDatetime(this.finalDate));
       });
       this.disableSearch = true;
     } else {

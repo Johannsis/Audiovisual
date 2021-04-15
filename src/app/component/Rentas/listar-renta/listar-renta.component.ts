@@ -6,13 +6,12 @@ declare var jsPDF: any;
 @Component({
   selector: 'app-listar-renta',
   templateUrl: './listar-renta.component.html',
-  styleUrls: ['./listar-renta.component.css']
+  styleUrls: ['./listar-renta.component.css'],
 })
 export class ListarRentaComponent implements OnInit {
-
   rentas: any;
 
-  constructor(private rentaService: RentaService) { }
+  constructor(private rentaService: RentaService) {}
 
   ngOnInit(): void {
     this.obtenerRentas();
@@ -33,7 +32,8 @@ export class ListarRentaComponent implements OnInit {
   ];
   categorySelected: any = null;
   disableSearch: boolean = false;
-  dateSelected: any = new Date().toISOString();
+  initialDate: any = new Date().toISOString();
+  finalDate: any = new Date().toISOString();
 
   parseIsoDatetime(dtstr) {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);
@@ -58,20 +58,24 @@ export class ListarRentaComponent implements OnInit {
     } else if (this.categorySelected == 'FECHA_PRESTAMO') {
       this.filterData = this.rentas.filter((element) => {
         return (
-          this.parseIsoDatetime(element.FECHA_PRESTAMO) >
-          this.parseIsoDatetime(this.dateSelected)
+          this.parseIsoDatetime(element.FECHA_PRESTAMO) >=
+            this.parseIsoDatetime(this.initialDate) &&
+          this.parseIsoDatetime(element.FECHA_PRESTAMO) <=
+            this.parseIsoDatetime(this.finalDate)
         );
       });
       this.disableSearch = true;
-    } else if(this.categorySelected == 'FECHA_DEVOLUCION'){
+    } else if (this.categorySelected == 'FECHA_DEVOLUCION') {
       this.filterData = this.rentas.filter((element) => {
         return (
-          this.parseIsoDatetime(element.FECHA_DEVOLUCION) >
-          this.parseIsoDatetime(this.dateSelected)
+          this.parseIsoDatetime(element.FECHA_DEVOLUCION) >=
+            this.parseIsoDatetime(this.initialDate) &&
+          this.parseIsoDatetime(element.FECHA_DEVOLUCION) <=
+            this.parseIsoDatetime(this.finalDate)
         );
       });
       this.disableSearch = true;
-    }else {
+    } else {
       this.filterData = this.rentas;
       this.disableSearch = false;
     }
@@ -83,9 +87,8 @@ export class ListarRentaComponent implements OnInit {
     } else {
       switch (this.categorySelected) {
         case 'NUMERO_PRESTAMO':
-          this.filterData = this.rentas.filter((element) =>
-            (element.NUMERO_PRESTAMO+"")
-              .indexOf(term) > -1
+          this.filterData = this.rentas.filter(
+            (element) => (element.NUMERO_PRESTAMO + '').indexOf(term) > -1
           );
           break;
         case 'ID_EMPLEADO':
@@ -116,14 +119,14 @@ export class ListarRentaComponent implements OnInit {
               .includes(term.trim().toLowerCase())
           );
           break;
-          case 'FECHA_DEVOLUCION':
+        case 'FECHA_DEVOLUCION':
           this.filterData = this.rentas.filter((element) =>
             element.FECHA_DEVOLUCION.trim()
               .toLowerCase()
               .includes(term.trim().toLowerCase())
           );
           break;
-          case 'COMENTARIO':
+        case 'COMENTARIO':
           this.filterData = this.rentas.filter((element) =>
             element.COMENTARIO.trim()
               .toLowerCase()
@@ -157,46 +160,47 @@ export class ListarRentaComponent implements OnInit {
       (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   eliminarRenta(id: number) {
     Swal.fire({
-      title: 'Quiere eliminar el equipo?',
+      title: 'Quiere retornar el articulo?',
       showDenyButton: true,
       confirmButtonText: `Si`,
-      confirmButtonColor: 'red',
+      confirmButtonColor: 'green',
       denyButtonText: `No`,
-      denyButtonColor: 'blue'
+      denyButtonColor: 'blue',
     }).then((result) => {
       if (result.isConfirmed) {
         this.rentaService.eliminarRenta(id).subscribe(
           (res) => {
-            Swal.fire('Eliminado!', '', 'success')
+            Swal.fire('Retornado!', '', 'success');
             this.obtenerRentas();
           },
           (err) => {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   }
 
   @ViewChild('reportes') reportes: ElementRef;
   generarReportes() {
     const data = this.reportes.nativeElement;
     var edit = document.getElementById('edit');
-    edit.parentNode.removeChild(edit)
-    console.log(data.innerHTML);
+    if(edit != null){
+      edit.parentNode.removeChild(edit);
+      console.log(data.innerHTML);
+    }
 
     const doc = new jsPDF('p', 'pt', 'a4');
 
     doc.autoTable({
       theme: 'striped',
-      html: data
+      html: data,
     });
     doc.save('Reportes de renta.pdf');
   }
-
 }
